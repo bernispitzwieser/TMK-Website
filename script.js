@@ -42,35 +42,29 @@ async function openMail() {
   window.location.href = "mailto:" + EVENT_EMAIL;
 }
 
-async function addToCalendar() {
-  const file = new File(
-    [ICS_CONTENT],
-    "Musikfest-TMK-Tarsdorf-2028.ics",
-    { type: "text/calendar;charset=utf-8" }
-  );
+function addToCalendar() {
+  // iPhone/iPad/Mac: originale ICS-Datei zum Import in Apple Kalender.
+  const ua = navigator.userAgent;
+  const isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+    (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+  const isMac = /Macintosh|Mac OS X/i.test(ua);
 
-  try {
-    if (navigator.canShare && navigator.canShare({ files: [file] }) && navigator.share) {
-      await navigator.share({
-        title: "Musikfest TMK Tarsdorf",
-        text: "09.–11. Juni 2028 · 5121 Tarsdorf",
-        files: [file]
-      });
-      return;
-    }
-  } catch (e) {
-    if (e && e.name === "AbortError") return;
+  if (isIOS || isMac) {
+    const icsUrl = new URL("Musikfest-TMK-Tarsdorf-2028.ics", document.baseURI);
+    window.location.assign(icsUrl.href);
+    return;
   }
 
-  const blob = new Blob([ICS_CONTENT], { type: "text/calendar;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "Musikfest-TMK-Tarsdorf-2028.ics";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 4000);
+  // Android und andere Geraete: direkt zum ausgefuellten Google-Kalender-Termin.
+  // Fuer ganztagige Termine ist das Enddatum exklusiv (12. Juni).
+  const googleUrl = new URL("https://calendar.google.com/calendar/render");
+  googleUrl.searchParams.set("action", "TEMPLATE");
+  googleUrl.searchParams.set("text", "Musikfest - 120 Jahre TMK Tarsdorf");
+  googleUrl.searchParams.set("dates", "20280609/20280612");
+  googleUrl.searchParams.set("details",
+    "09.-11. Juni 2028 | 120 Jahre TMK Tarsdorf. " +
+    "Weitere Informationen auf https://tmk-tarsdorf.at");
+  googleUrl.searchParams.set("location", "5121 Tarsdorf, Österreich");
 
-  showHint("Kalenderdatei wurde erstellt");
+  window.location.assign(googleUrl.href);
 }
