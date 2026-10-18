@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#700205">
+  <title>120 Jahre TMK Tarsdorf</title>
+  <meta name="description" content="120 Jahre TMK Tarsdorf · 09.–11. Juni 2028">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="hero-title">
+      <p id="hero-title" class="eyebrow">SAVE THE DATE</p>
+
+      <div class="logo-wrap">
+        <img class="logo" src="assets/logo-transparent.png" alt="120 Jahre TMK Tarsdorf · 09. - 11. Juni 2028">
+      </div>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <p class="intro">Weitere Informationen folgen.</p>
+
+      <nav class="actions" aria-label="Schnellaktionen">
+        <button class="btn btn--gold" type="button" onclick="addToCalendar()">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13H4V6a1 1 0 0 1 1-1Z"/>
+          </svg>
+          <span>Termin vormerken</span>
+        </button>
+
+        <button class="btn btn--light" type="button" onclick="openMail()">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16v12H4V6Zm0 1 8 6 8-6"/>
+          </svg>
+          <span>E-Mail</span>
+        </button>
+      </nav>
+
+      <div class="contact-row">
+        <a class="email-link" href="mailto:info@tmk-tarsdorf.at">info@tmk-tarsdorf.at</a>
+        <button class="copy-mail" type="button" onclick="copyEmail()" aria-label="E-Mail-Adresse kopieren" title="E-Mail-Adresse kopieren">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 9h10v12H9z"></path>
+            <path d="M5 3h10v12"></path>
+          </svg>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
