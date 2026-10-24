@@ -11,7 +11,16 @@
 </head>
 <body>
   <main class="page">
-    <a class="home-about-link" href="ueber-uns.html" aria-label="Über die Trachtenmusikkapelle Tarsdorf">Über uns</a>
+    <!-- Desktop: dezent verlinkt. Handy: platzsparendes Menü für weitere Unterseiten. -->
+    <a class="home-about-link" href="ueber-uns.html">Über uns</a>
+    <details class="mobile-menu">
+      <summary aria-label="Menü" title="Menü">
+        <span class="menu-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+      </summary>
+      <nav class="mobile-menu-panel" aria-label="Hauptmenü">
+        <a href="ueber-uns.html">Über uns</a>
+      </nav>
+    </details>
     <section class="hero" aria-labelledby="hero-title">
       <p id="hero-title" class="eyebrow">SAVE THE DATE</p>
 
@@ -52,5 +61,6 @@
   </main>
 
   <script src="script.js" defer></script>
+  <script src="navigation.js" defer></script>
 </body>
 </html>
